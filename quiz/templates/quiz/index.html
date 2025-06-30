@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block content %}
+<a href="{% url 'create_quiz' %}" class="addlink">
+    Add subject
+</a>
+    <h1> Quiz List</h1>
+    <ul>
+        {% for quiz in quizs %}
+         <li>
+            <div class="style-item">
+                    {{quiz.quiz_text}}
+                <div class="action-buttons">
+                    <a href="{% url 'update-quiz' quiz.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'delete-quiz' quiz.id %}" class="delete-link">Delete</a>
+                </div>
+            </div>  
+         </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

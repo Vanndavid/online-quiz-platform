@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<a href="{% url 'createPrivateQuiz' %}" class="addlink">
+    Add quiz
+</a>
+  
+<h1> List of quiz</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Quiz</th>
+        <th>Code</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quiz in privateQuizzes %}
+      <tr>
+        <td>
+          <a href="{% url 'privateQuiz' quiz.id %}">
+            {{quiz.name}}
+          </a>
+        </td>
+        <td>
+          <a>
+            {{quiz.code}}
+          </a>
+        </td>
+        <td>
+          <div class="action-buttons">
+            <a href="{% url 'privateQuiz' quiz.id %}" class="edit-link">Show</a>
+            <a href="{% url 'delete-private-quiz' quiz.id %}" class="delete-link">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}

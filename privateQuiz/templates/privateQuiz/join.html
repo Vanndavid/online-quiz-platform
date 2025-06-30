@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="radio-group">
+        <label for="code">Code:</label>
+        <div>
+            <label>
+              <input type="text" name="code" >
+            </label>
+        </div>
+      </div>
+
+
+    <button type="submit"  id="submitButton" class="addlink">Join</button>
+</form>
+{% endblock content %}

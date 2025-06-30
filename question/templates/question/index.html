@@ -1,0 +1,145 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .question-container {
+        display: grid;
+        grid-template-rows: auto auto; /* Set the height of rows */
+        grid-template-columns: 1fr 5fr;
+        gap: 20px; /* Add some gap between rows */
+    }
+
+    .column {
+        padding: 5px; /* Add padding to each column */
+    }
+
+    .header-row,
+    .question-item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .searchbar-item {
+        padding: 5px;
+    }
+
+    .header-row {
+        background-color: #f0f0f0; /* Header background color */
+        border-bottom: 1px solid #ccc; /* Add border to separate header row from content */
+    }
+
+    .question-text {
+        flex: 1; /* Take up remaining space */
+        padding-right: 20px; /* Add some padding to the right for spacing */
+    }
+
+    .subject,
+    .difficulty
+    {
+        margin-right: 70px; /* Add gap between items */
+    }
+
+    .subject-header
+    {
+        margin-right: 70px; /* Add gap between items */
+    }
+
+    .difficulty-header
+    {
+        margin-right: 125px; /* Add gap between items */
+    }
+
+    .action-buttons {
+        margin-left: auto; /* Align to the right */
+    }
+
+    .search-form {
+        margin-top: 20px;
+    }
+
+    .search-form input[type="text"] {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .search-form button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+
+<div class="create-question-btn">
+    <a href="{% url 'create_question' %}" class="addlink">
+        Add Question
+    </a>
+</div>
+
+<div class="question-container">
+    <div>
+        <h3>Browse Questions</h3>
+        <hr>
+
+        <div class="searchbar-item">
+            <a href="{% url 'questions' %}">All</a>
+        </div>
+        <hr>
+
+        <h4>Subject</h4>
+        {% for subject in subjects %}
+        <div class="searchbar-item">
+            <a href="{% url 'questions' %}?subject={{subject.name}}">{{subject}}</a>
+        </div>
+        {% endfor %}
+        <hr>
+
+        <h4>Difficulty</h4>
+        {% for difficulty in difficulties %}
+        <div class="searchbar-item">
+            <a href="{% url 'questions' %}?difficulty={{difficulty.name}}">{{difficulty}}</a>
+        </div>
+        {% endfor %}
+
+        <!-- Search form -->
+        <form class="search-form" method="GET" action="{% url 'questions' %}">
+            <input type="text" name="q" placeholder="Search Questions">
+            <button type="submit">Search</button>
+        </form>
+
+    </div>
+    <div>
+        <h1> Questions </h1>
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Subject</th>
+                <th>Difficulty</th>
+                <th>Action</th>
+            </tr>
+            {% for question in questions %}
+            <tr>
+                <td>{{ question.question_text }}</td>
+                <td>{{ question.subject }}</td>
+                <td>{{ question.difficulty }}</td>
+                <td>
+                    <a href="{% url 'update-question' question.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'delete-question' question.id %}" class="delete-link">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+    
+    
+{% endblock %}

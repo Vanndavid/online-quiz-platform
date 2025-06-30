@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <h1>Quiz: {{privateQuiz.name}}</h1>
+    <h1>Level: {{privateQuiz.difficulty}}</h1>
+    <h1>Number of Questions: {{privateQuiz.numberOfQuestion}}</h1>
+    <h1>Subject: {{privateQuiz.subject}}</h1>
+    <h1>Code: {{privateQuiz.code}}</h1>
+    <h1>Number of Participant: {{numberOfParticipant}} </h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>At</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+            <tr>
+            <td>
+                {{participant.rank}}
+            </td>
+            <td>
+                {{participant.user}}
+            </td>
+            <td>
+                {{participant.correct_answers}} / {{participant.total_questions}}
+            </td>
+            <td>
+                
+                {{participant.created_at}}
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      
+</div>
+
+{% endblock content %}

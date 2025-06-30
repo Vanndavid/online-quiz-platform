@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<a href="{% url 'create-role' %}" class="addlink">
+    Add role
+</a>
+  
+<h1> List of roles</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for role in roles %}
+      <tr>
+        <td>
+          <a href="{% url 'role' role.id %}">
+            {{role.name}}
+          </a>
+        </td>
+        <td>
+          <div class="action-buttons">
+            <a href="{% url 'update-role' role.id %}" class="edit-link">Edit</a>
+            <a href="{% url 'delete-role' role.id %}" class="delete-link">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}

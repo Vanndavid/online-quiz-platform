@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<a href="{% url 'create-difficulty' %}" class="addlink">
+    Add difficulty
+</a>
+  
+<h1> List of difficulty</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Difficulty</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for difficulty in difficulties %}
+      <tr>
+        <td>
+          <a href="{% url 'difficulty' difficulty.id %}">
+            {{difficulty.name}}
+          </a>
+        </td>
+        <td>
+          <div class="action-buttons">
+            <a href="{% url 'update-difficulty' difficulty.id %}" class="edit-link">Edit</a>
+            <a href="{% url 'delete-difficulty' difficulty.id %}" class="delete-link">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <label for="subject">Subject:</label><br>
+  <select name="subject" id="subject">
+      {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label for="difficulty">Difficulty:</label><br>
+  <select name="difficulty" id="difficulty">
+      {% for difficulty in difficulties %}
+          <option value="{{ difficulty.id }}">{{ difficulty.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label for="question_text">Question Text:</label><br>
+  <input type="text" id="question_text" name="question_text" required><br><br>
+
+
+  {% for choice_form in choice_formset %}
+    <label for="choice{{ forloop.counter }}">Choice {{ forloop.counter }}:</label>
+    <label for="correct{{ forloop.counter }}">Correct Answer:</label>
+    <input type="radio" id="correct{{ forloop.counter }}" name="correct_answer" value="{{ forloop.counter }}"><br><br>
+    <input type="text" id="choice{{ forloop.counter }}" name="choice{{ forloop.counter }}" required><br><br>
+
+
+  {% endfor %}
+  
+
+  <!-- Add more choices as needed -->
+
+  <button type="submit" class="addlink">Create Question</button>
+</form>
+
+{% endblock content %}

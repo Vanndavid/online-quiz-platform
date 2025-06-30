@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <table>
+            
+        <tr>
+            <td colspan="3">
+                <h1 style="text-align: center;">{% if quiz.privateQuiz %}Quiz: {{quiz.privateQuiz.name}}{% else %} Practice  {% endif %}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Subject:</strong> {{quiz.subject}}
+            </td>
+            <td>
+                <strong>Level:</strong> {{quiz.difficulty}}
+            </td>
+            <td>
+                <strong>Number of Questions:</strong> {{quiz.numberOfQuestion}}
+            </td>
+        </tr>
+        
+        <TR>
+            <td colspan="3">
+                
+                <h3 style="text-align: center;">Result: {{numOfC}}/{{numOfQ}} - {{average}}% </h3>    
+            </td>
+        </TR>
+    </table>
+    <form method="post"> 
+        {% csrf_token %}
+        <ul>
+            {% for question in quizQuestions %}
+                <li>
+                    <div style="padding: 20px;">
+                        <h3>
+                            {{ forloop.counter }}. {{question.question.question_text}} 
+                            {% if question.choice.correctAnswer %} <span class="green-tick">&#x2713;</span>
+                            {% else %}<span class="red-cross">&#10060;</span>
+                            {% endif %}
+                        </h3>  
+                    </div>
+                    <div class="choice-container">
+                        {% for choice in question.question.choices.all  %}
+                        <div class="choice-item {% if choice.correctAnswer %} correctChoice {% elif choice == question.choice and not choice.correctAnswer %} wrongChoice {% endif %}">
+                            <input type="radio" name="choice{{ choice.id }}"  {% if choice == question.choice %}checked{% endif %} disabled>
+                            {{choice.choice_text}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                
+                </li>
+            
+            {% endfor %}
+        </ul>
+    </form>
+</div>
+
+{% endblock content %}

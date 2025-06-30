@@ -1,0 +1,80 @@
+
+{% load static %}
+<style>
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-width: 50px; /* Adjust as needed */
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.menu li:first-child {
+    margin-left: 0;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.menu li a:hover {
+    color: #ccc;
+}
+    
+</style>
+<div>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{% url 'homepage' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Logo">
+            </a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                {% if request.user.is_authenticated %} <!--added by ronald and david-->
+                
+                 
+                    {% if request.user.role|lower == 'teacher' or  request.user.role|lower == 'admin' %}
+                                        
+                        <li><a href="{% url 'privateQuizzes' %}">Private Quiz</a></li>
+                        <li><a href="{% url 'questions' %}">Question</a></li>
+                        <li><a href="{% url 'subjects' %}">Subject</a></li> 
+                        <li><a href="{% url 'difficulties' %}">Difficulty</a></li>
+                    {% endif %}
+                    {% if request.user.role|lower == 'admin' %}
+                        <li><a href="{% url 'users' %}">Users</a></li>
+                        <li><a href="{% url 'roles' %}">Role</a></li>
+                    {% endif %}
+                <li><a href ="{% url 'logout' %}">Logout</a></li>    
+                
+                {% else %}
+                <li><a href="{% url 'login' %}">Login/Register</a></li> <!--added by ronald-->
+                {% endif %}
+
+            
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+</div>

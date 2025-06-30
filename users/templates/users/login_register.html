@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+<!--added by ronald-->
+
+{% block content %}
+
+
+    {% if page == 'login' %}
+    <div class="login">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %} <!--security-->
+
+            <h1> Login</h1>
+            <br>
+
+            <p><label>Email Address </label>
+                <input type="email" name="email" placeholder="Enter Email"/>
+
+            <p><label for="psw"><strong>Password </strong></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required="required"></p>
+
+            <p><input type="submit" value="Login" class="loginbutton"></p> 
+            
+            <br>
+            <p class="signup">Don't have an account? <a href = "{% url 'register' %}">Register</a> </p>
+        </form>
+    </div>
+
+    {% else %}
+
+    <div class="register">
+        <form method="POST" action="{% url 'register' %}"> <!--form submitted to this url which calls views functions for register page-->
+            {% csrf_token %} 
+
+            <h1> Register</h1>
+            <br>
+
+            <label for="name"> <strong>Name</strong> </label>
+            <input type="text" id="name" name="name" placeholder="Enter Name"/>
+
+            <p><label for="email"> <strong>Email</strong></label></p>
+            <input type="email" placeholder="Enter Email" name="email" id="email" />
+
+            <p><label for="password1"><strong>Password </strong></label>
+            <input type="password" placeholder="Enter Password" name="password1" id="password1" required="required"></p>
+            
+            Your password can’t be too similar to your other personal information.<br>
+            Your password must contain at least 8 characters.<br>
+            Your password can’t be a commonly used password.<br>
+            Your password can’t be entirely numeric.<br>
+            <br>
+            <br>
+            <p><label for="password2"><strong>Confirm Password </strong></label>
+            <input type="password" placeholder="Confirm Password" name="password2" id="password2" required="required"></p> 
+            <p><button type="submit" class="regbutton" id="register">Register</button></p>
+            <br>
+            <p class="signin">Already have an account? <a href = "{% url 'login' %}">Sign in</a> </p>
+        </form>
+    </div>
+
+    {% endif %}
+{% endblock content %}

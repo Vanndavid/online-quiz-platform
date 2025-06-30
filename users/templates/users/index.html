@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="create-user-btn">
+    <a href="{% url 'create-user' %}" class="addlink">
+        Add User
+    </a>
+</div>
+
+<div class="user-container">
+    <div>
+        <h3>Browse Users</h3>
+
+        <!-- Search form -->
+        <form class="search-form" method="GET" action="{% url 'users' %}">
+            <input type="text" name="q" placeholder="Search Users">
+            <button type="submit" class="addlink">Search</button>
+        </form>
+
+    </div>
+    <div>
+        <h1> Users </h1>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{% url 'reset-user' user.id %}" class="edit-link">Reset Password</a>
+                    <a href="{% url 'update-user' user.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'delete-user' user.id %}" class="delete-link">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+    
+    
+{% endblock %}

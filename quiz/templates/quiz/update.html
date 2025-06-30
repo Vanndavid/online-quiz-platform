@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <label for="question_text">Question Text:</label><br>
+  <input type="text" id="question_text" name="question_text" value="{{ question.question_text }}" required><br><br>
+
+  <label for="subject">Subject:</label><br>
+  <select name="subject" id="subject">
+      {% for subject in subjects %}
+          <option value="{{ subject.id }}" {% if subject.id == question.subject_id %} selected {% endif %}>{{ subject.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label for="difficulty">Difficulty:</label><br>
+  <select name="difficulty" id="difficulty">
+      {% for difficulty in difficulties %}
+          <option value="{{ difficulty.id }}" {% if difficulty.id == question.difficulty_id %} selected {% endif %}>{{ difficulty.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label>Choices:</label><br>
+  {% for choice in question.choice_set.all %}
+      <input type="text" name="choice{{ forloop.counter }}" value="{{ choice.choice_text }}" required>
+      <input type="radio" name="correct_answer" value="{{ forloop.counter }}" {% if choice.correctAnswer %} checked {% endif %}> Correct
+      <br>
+  {% endfor %}
+
+  <!-- Add more choice fields if needed -->
+
+  <button type="submit">Update Question</button>
+</form>
+
+{% endblock content %}

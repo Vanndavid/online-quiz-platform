@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <table>
+            
+        <tr>
+            <td colspan="3">
+                <h1 style="text-align: center;">{% if quiz.privateQuiz %}Quiz: {{quiz.privateQuiz.name}}{% else %} Practice  {% endif %}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Subject:</strong> {{quiz.subject}}
+            </td>
+            <td>
+                <strong>Level:</strong> {{quiz.difficulty}}
+            </td>
+            <td>
+                <strong>Number of Questions:</strong> {{quiz.numberOfQuestion}}
+            </td>
+        </tr>
+        
+        <TR>
+            <td colspan="3">
+                <strong>Instructions:</strong> Read each question carefully and select the best answer from the options provided. Choose only one answer for each question. There is only one correct answer for each question. When you finish, click Submit Answer. Once you submitted, there is no going back.
+            </td>
+        </TR>
+    </table>
+    <form method="post"> 
+        {% csrf_token %}
+        <ul>
+            {% for question in questions %}
+                <li>
+                    <div style="padding: 20px;">
+                        <h3>
+                            {{ forloop.counter }}. {{question.question_text}}
+                        </h3>  
+                    </div>
+                    <div class="choice-container">
+                        {% for choice in question.choices.all  %}
+                        <div class="choice-item">
+                            
+                            <label style="    display: block;">
+                                <input type="radio" name="{{ question.id }}" value="{{choice.id}}">
+                                {{choice.choice_text}}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                 
+                </li>
+            
+            {% endfor %}
+        </ul>
+        <br>
+        <button type="submit" class="addlink">Submit Answer</button>
+    </form>
+ 
+</div>
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="radio-group">
+        <label for="subject">Subject:</label>
+        <div>
+          {% for subject in subjects %}
+            <label>
+              <input type="radio" name="subject" value="{{ subject.id }}" id="subject_{{ subject.id }}">
+              {{ subject.name }}
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="radio-group">
+        <label for="difficulty">Difficulty:</label>
+        <div>
+          {% for difficulty in difficulties %}
+            <label>
+              <input type="radio" name="difficulty" value="{{ difficulty.id }}" id="difficulty_{{ difficulty.id }}">
+              {{ difficulty.name }}
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="radio-group">
+        <label for="numberOfQuestion">Number of Question:</label>
+        <div>
+          <label>
+            <input type="radio" name="numberOfQuestion" value="10" id="numberOfQuestion_10" checked>
+            10
+          </label>
+          <label>
+            <input type="radio" name="numberOfQuestion" value="20" id="numberOfQuestion_20">
+            20
+          </label>
+          <label>
+            <input type="radio" name="numberOfQuestion" value="30" id="numberOfQuestion_30">
+            30
+          </label>
+        </div>
+      </div>
+  
+
+  
+
+  <!-- Add more choices as needed -->
+
+  <button type="submit"  id="submitButton" disabled>Generate Quiz</button>
+</form>
+<script>
+    validateForm();
+    function toggleButtonClass() {
+        var submitButton = document.getElementById('submitButton');
+        if (submitButton.disabled) {
+            submitButton.classList.remove('addlink');
+            submitButton.classList.add('disabledLink');
+        } else {
+            submitButton.classList.remove('disabledLink');
+            submitButton.classList.add('addlink');
+        }
+    }
+    // Function to enable/disable submit button based on form validation
+    function validateForm() {
+        var subjectSelected = document.querySelector('input[name="subject"]:checked');
+        var difficultySelected = document.querySelector('input[name="difficulty"]:checked');
+        var numberOfQuestionSelected = document.querySelector('input[name="numberOfQuestion"]:checked');
+        var submitButton = document.getElementById('submitButton');
+        
+        // Enable submit button if all required fields are selected
+        if (subjectSelected && difficultySelected && numberOfQuestionSelected) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+        toggleButtonClass();
+    }
+
+    // Event listeners to trigger form validation on change
+    document.querySelectorAll('input[name="subject"]').forEach(item => {
+        item.addEventListener('change', validateForm);
+    });
+
+    document.querySelectorAll('input[name="difficulty"]').forEach(item => {
+        item.addEventListener('change', validateForm);
+    });
+
+    document.querySelectorAll('input[name="numberOfQuestion"]').forEach(item => {
+        item.addEventListener('change', validateForm);
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,21 @@
+body {
+    background-color: #ffffff; /* white background */
+}
+
+.style-item {
+    background-color: #add8e6; /* light blue background */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.action-buttons a {
+    background-color: #000000; /* black background */
+    color: #ffffff; /* white text */
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+form {
+    background-color: #ffffff; /* white background */
+}

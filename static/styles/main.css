@@ -1,0 +1,251 @@
+body{
+    background-color: #f2f2f2;
+    
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+
+/* Further styling for button */
+button:hover {
+    opacity: 0.8;
+  }
+
+  .containerQuiz {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .square {
+    width: 100%;/* Adjust size as needed */
+    height: 150px; /* Adjust size as needed */
+    background-color: #3498db; /* Change color as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px; /* Adjust spacing between squares */
+  }
+  
+  .text {
+    color: white; /* Change text color as needed */
+    font-size: 18px; /* Adjust text size as needed */
+  }
+  .choice-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+    gap: 20px; /* Gap between columns */
+}
+
+  .choice-item {
+ 
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.correctChoice{
+  border: 1px solid green;
+}
+.wrongChoice{
+  border: 1px solid rgb(128, 0, 0);
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+/* Style for the "Add subject" link */
+.addlink {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.disabledLink{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #e0e0e0; /* Lighter background color */
+  color: #808080; /* Lighter text color */
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.addlink:hover {
+  background-color: #0056b3; /* Darker background color on hover */
+}
+
+/* Style for the list of subjects */
+ul {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0;
+}
+
+/* Style for each subject item */
+.style-item {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Align items to both ends of the row */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 10px; /* Add some space between items */
+  border: 1px solid #ccc; /* Add a border */
+  padding: 10px;
+}
+
+.style-item a {
+  color: black; /* Change link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.style-item a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Style for the "Edit" and "Delete" links */
+.style-item .edit-link,
+.style-item .delete-link {
+  margin-left: 10px; /* Add some space between links */
+  color: gray; /* Change link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.style-item .edit-link:hover,
+.style-item .delete-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.action-buttons {
+  margin-left: auto; /* Push buttons to the right */
+}
+
+a {
+  margin-right: 5px; /* Add some space between buttons */
+  color: gray; /* Change button text color */
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+/* Reference: https://www.w3schools.com/howto/howto_css_register_form.asp */
+/* added by ronald */
+
+/* Indent register heading */
+.register{
+  padding: 16px;
+}
+
+/* Indent login heading */
+.login{
+  padding: 16px;
+}
+
+/* Set a style for the submit/register button */
+.regbutton{
+  color: white;
+  width:100%;
+  background-color:#007bff;
+  padding: 10px;
+}
+
+/* Set a style for the login button */
+.loginbutton{
+  color: white;
+  width:100%;
+  background-color: #007bff;
+  padding: 10px;
+}
+
+/* Centre text */
+.signin{
+  text-align: center;
+}
+
+.signup{
+  text-align: center;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #c2c2c2;
+  background: #f1f1f1;
+}
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #c2c2c2;
+  background: #f1f1f1;
+  font-size: 16px; /* Adjust font size as needed */
+  line-height: 1.5; /* Adjust line height as needed */
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+}
+
+/* Style the arrow icon for select */
+select::-ms-expand {
+  display: none; /* Hide default arrow icon for IE */
+}
+select::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.radio-group label {
+  margin-right: 20px; /* Adjust spacing between radio buttons */
+  
+  min-width: 200px;
+}
+.green-tick {
+  color: green; /* Set the color to green */
+  font-size: 20px; /* Adjust the font size as needed */
+  margin-left: 5px; /* Add some space between the tick mark and surrounding text */
+}
+.red-cross {
+  color: red; /* Set the color to red */
+  font-size: 20px; /* Adjust the font size as needed */
+  margin-left: 5px; /* Add some space between the cross mark and surrounding text */
+}
+.columnContainer {
+  display: flex;
+}
+.column {
+  flex: 1; /* Each column takes up equal width */
+  padding: 20px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Achievement</title>
+    <style>
+        /* Reset default margin and padding */
+html, body, header, main, footer {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Quiz list styles */
+.quiz {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.quiz h3 {
+    margin-bottom: 5px;
+}
+
+.quiz p {
+    margin: 5px 0;
+}
+
+/* User stats styles */
+#user-stats {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#user-stats p {
+    margin: 5px 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Achievement</h1>
+    </header>
+
+    <main>
+        <section id="quiz-list">
+            <h2><Quiz-List></Quiz-List></h2>
+            <!-- Display a list of quizzes here -->
+        </section>
+
+        <section id="user-stats">
+            <h2>User Quize Detail</h2>
+            <p>Total Quizzes Done: <span id="total-quizzes">0</span></p>
+            <p>Total Score: <span id="total-score">0</span></p>
+        </section>
+    </main>
+</body>
+</html>

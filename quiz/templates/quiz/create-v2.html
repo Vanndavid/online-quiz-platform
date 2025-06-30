@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <label for="subject">Subject:</label><br>
+  <select name="subject" id="subject">
+      {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label for="difficulty">Difficulty:</label><br>
+  <select name="difficulty" id="difficulty">
+      {% for difficulty in difficulties %}
+          <option value="{{ difficulty.id }}">{{ difficulty.name }}</option>
+      {% endfor %}
+  </select><br><br>
+
+  <label for="numberOfQuestion">Number of Question:</label><br>
+  <select name="numberOfQuestion" id="numberOfQuestion">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+  </select><br><br>
+
+  
+
+  <!-- Add more choices as needed -->
+
+  <button type="submit" class="addlink">Generate Quiz</button>
+</form>
+
+{% endblock content %}

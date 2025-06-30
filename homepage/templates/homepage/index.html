@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% block content %}
+<h1> Welcome to Instatute Online Quiz Platform</h1>
+{% if request.user.is_authenticated %}
+<h2>Hello, {{request.user.name}} </h2>
+
+{% endif %}
+<div class="containerQuiz">
+    <div class="square">
+        <a href="{% url 'create_quiz' %}">
+            <h1 style="color:aliceblue">Practice Quiz</h1>
+            <p style="color:aliceblue">Practice your quiz on your chosen subject as much as you want.</p>
+        </a>
+    </div>
+    <div class="square">
+        <a href="{% url 'joinPrivateQuiz' %}">
+            <h1 style="color:aliceblue">Join Quiz</h1>
+            <p style="color:aliceblue">Get the code from your teacher and join the quiz and get your score.</p>
+        </a>
+        
+    </div>
+</div>
+{% if request.user.is_authenticated %}
+<div class="columnContainer">
+    <div class="column">
+        <h2>Recent Practice</h2>
+        <h3>Average Score: {{averagePracticeScore}}%</h3>
+        <table>
+            
+            {% for quiz in practices %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{quiz.subject}}
+                </td>
+                <td>
+                    {{quiz.difficulty}}
+                </td>
+                <td>
+                    {{quiz.created_at}}
+                </td>
+                <td>
+                    {{quiz.count_correct_answers }}/{{quiz.count_all_questions }}
+                </td>
+                <td>
+                    <a href="{% url 'getQuiz' quiz.id %}" class="edit-link">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="column">
+        <h2>Recent Quiz</h2>    
+        <h3>Average Score: {{averageQuizScore}}%</h3>
+        <table>
+            
+            {% for quiz in quizzes %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{quiz.privateQuiz.name}}
+                </td>
+                <td>
+                    {{quiz.subject}}
+                </td>
+                <td>
+                    {{quiz.difficulty}}
+                </td>
+                <td>
+                    {{quiz.created_at}}
+                </td>
+                <td>
+                    {{quiz.count_correct_answers }}/{{quiz.count_all_questions }}
+                </td>
+                <td>
+                    <a href="{% url 'getQuiz' quiz.id %}" class="edit-link">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
